@@ -1,0 +1,145 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #f39c12, #ff9ff3, #6c5ce7, #00b894, #f1c40f); /* Lighter, vibrant colors */
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  color: #fff;
+  background-size: 400% 400%; /* Expanded background size for smooth animation */
+  animation: gradientShift 12s ease infinite; /* Smooth, slow animated background */
+}
+
+/* Animation for background gradient */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.container {
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.8); /* Light, semi-transparent background */
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px); /* Blurred background for a frosted glass effect */
+  width: 350px; /* Increased width for the container */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 450px; /* Added height to ensure there's enough space for the game */
+}
+
+h1 {
+  font-size: 2.5rem;
+  color: #2d3436; /* Dark text color for contrast */
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.mode-select button {
+  margin: 10px;
+  padding: 12px 24px;
+  background: #00cec9; /* Bright, refreshing color for buttons */
+  border: none;
+  border-radius: 8px;
+  color: #2d3436;
+  cursor: pointer;
+  font-size: 1.2rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.mode-select button:hover {
+  background: #0984e3; /* Blue on hover */
+  transform: translateY(-5px);
+}
+
+.game-board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Use fractions to fill the entire container */
+  grid-template-rows: repeat(3, 1fr); /* Use fractions for rows */
+  margin: 20px auto;
+  display: none;
+  width: 300px; /* Set a fixed size for the game board */
+  height: 300px; /* Set the same height to maintain a square layout */
+  border: 2px solid #fff; /* Add a border around the entire game board */
+  border-radius: 15px;
+  grid-gap: 10px; /* Add space between each cell */
+}
+
+.cell {
+  background: #2d3436; /* Dark background for cells */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem; /* Reduced size for X and O */
+  cursor: pointer;
+  border-radius: 10px;
+  transition: background 0.3s, transform 0.2s;
+  color: white; /* Default color for X and O */
+  width: 100%; /* Make the cell take full width */
+  height: 100%; /* Make the cell take full height to ensure square shape */
+}
+
+.cell:hover {
+  background: #ff7675; /* Light red color when hovered */
+  transform: scale(1.1);
+}
+
+.cell.taken {
+  cursor: not-allowed;
+  background: #636e72; /* Dark gray background for taken cells */
+}
+
+.cell.x {
+  color: white; /* White color for X */
+}
+
+.cell.o {
+  color: white; /* White color for O */
+}
+
+.winning-message {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7); /* Dark background for the winning message */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.5s;
+}
+
+.winning-message.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+.winning-message button {
+  margin-top: 20px;
+  padding: 12px 24px;
+  background: #55efc4; /* Fresh green color for the restart button */
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.winning-message button:hover {
+  background: #00b894; /* Darker green when hovered */
+  transform: translateY(-5px);
+}
